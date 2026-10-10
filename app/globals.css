@@ -1,41 +1,18 @@
 @import "tailwindcss";
 
-/* ==========================================================================
-   DCEB design tokens: the single source of truth (plan section 2b).
-   Reference canvas is Figma "Desktop - 1", 1440 wide. Components use the
-   utilities these tokens generate; no hex / px / font-size literals elsewhere.
-   ========================================================================== */
-
+/* Design tokens: change the brand here and the whole page follows. */
 :root {
   /* neutrals (switch with theme) */
   --background: #ffffff;
-  --foreground: #171717;
-  --muted: #f1f1ef;
-  --muted-foreground: #5f5f5b;
-  --line: #aeabab33; /* #AEABAB at 20% (Figma) */
-  --toast-bg: #ffffff;
-  --toast-sub: #555555;
-
-  /* brand (identical in light and dark) - Figma Desktop - 1 */
-  --brand-blue: #0043ca;
-  --brand-blue-bright: #004fee;
-  --brand-red: #e3262c;
-  --brand-gold-from: #f5d04a; /* estimated, confirm in Figma */
-  --brand-gold-to: #d9a81e; /* estimated, confirm in Figma */
-  --brand-mpesa: #43b02a; /* M-Pesa / Safaricom green (assumed) */
-  --hero-fade: #080808; /* gradient base, Figma #D9D9D9 0% -> #080808 89% */
-
-  /* status (toast, form feedback) */
-  --status-success: #269b24;
-  --status-error: #c62828;
-  --status-warning: #b26a00;
-  --status-info: #1565c0;
-
-  /* layout rhythm */
-  --gutter: clamp(20px, 7vw, 100px); /* page side padding; 7% at 1440 */
-  --section-y: clamp(96px, 8.9vw, 128px); /* vertical section padding */
-  --panel-h: 1024px; /* Hero and Welcome panel height at 1440 */
-  --bar-w: 48px; /* red divider bar */
+  --foreground: #14213d;
+  --surface: #f6f7fb;
+  --line: #e2e5ee;
+  --muted: #4b5563;
+  --navy: #14213d;
+  --navy-light: #22346a;
+  --gold: #d4a33f;
+  --gold-light: #e6bd63;
+  --gold-soft: #fbf3e0;
 }
 
 .dark {
@@ -54,56 +31,26 @@
   /* colour */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-surface: var(--surface);
   --color-line: var(--line);
-  --color-brand-blue: var(--brand-blue);
-  --color-brand-blue-bright: var(--brand-blue-bright);
-  --color-brand-red: var(--brand-red);
-  --color-brand-gold-from: var(--brand-gold-from);
-  --color-brand-gold-to: var(--brand-gold-to);
-  --color-brand-mpesa: var(--brand-mpesa);
-  --color-hero-fade: var(--hero-fade);
-  --color-success: var(--status-success);
-  --color-error: var(--status-error);
-  --color-warning: var(--status-warning);
-  --color-info: var(--status-info);
+  --color-muted: var(--muted);
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-soft: var(--gold-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
 
-  /* fonts */
-  --font-sans: var(--font-inter);
-  --font-heading: var(--font-poppins);
-  --font-display: var(--font-montserrat);
+html {
+  scroll-behavior: smooth;
+}
 
-  /* type scale: exact Figma size at 1440, fluid below (vw = size / 1440) */
-  --text-display: clamp(2.75rem, 6.944vw, 6.25rem); /* 100 / 150 measured */
-  --text-display--line-height: 1.5;
-  --text-h2: clamp(2.25rem, 5vw, 4.5rem); /* 72 / 84 */
-  --text-h2--line-height: 1.1667;
-  --text-h3: clamp(1.75rem, 2.778vw, 2.5rem); /* 40 / 48 */
-  --text-h3--line-height: 1.2;
-  --text-h4: clamp(1.375rem, 1.944vw, 1.75rem); /* 28 / 36 */
-  --text-h4--line-height: 1.2857;
-  --text-body-lg: clamp(1.125rem, 1.667vw, 1.5rem); /* 24 / 40 */
-  --text-body-lg--line-height: 1.6667;
-  --text-body: clamp(1rem, 1.389vw, 1.25rem); /* 20 / 32 */
-  --text-body--line-height: 1.6;
-  --text-numeral: clamp(10rem, 17vw, 18rem); /* big index numbers */
-  --text-numeral--line-height: 0.8;
-  --text-label: 0.875rem; /* 14 / 20 */
-  --text-label--line-height: 1.4286;
-
-  /* radii */
-  --radius-card: 24px;
-  --radius-image: 20px;
-  --radius-input: 12px;
-  --radius-modal: 28px;
-
-  /* shadows */
-  --shadow-soft: 0 24px 48px -24px rgba(0, 0, 0, 0.35);
-  --shadow-divider: -14px 0 24px -8px rgba(0, 0, 0, 0.35);
-
-  /* easing */
-  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {

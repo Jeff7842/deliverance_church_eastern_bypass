@@ -103,12 +103,10 @@ function mulberry32(seed: number): () => number {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
   }
 }
-
 function hexRgb(h: string): [number, number, number] {
   const v = parseInt(h.replace("#", ""), 16)
   return [(v >> 16) & 255, (v >> 8) & 255, v & 255]
 }
-
 function mixRgb(a: string, b: string, t: number): string {
   const A = hexRgb(a)
   const B = hexRgb(b)
@@ -132,7 +130,6 @@ function paintLandscape(seed: number, palette: LandPalette, w = 1600, h = 1000):
   sky.addColorStop(1, P.bottom)
   g.fillStyle = sky
   g.fillRect(0, 0, w, h)
-
   const sx = w * (0.22 + r() * 0.56)
   const sy = h * (0.26 + r() * 0.16)
   const halo = g.createRadialGradient(sx, sy, 0, sx, sy, w * 0.45)
@@ -169,7 +166,6 @@ function paintLandscape(seed: number, palette: LandPalette, w = 1600, h = 1000):
     mist.addColorStop(1, "rgba(" + P.mist + "," + (0.55 - k * 0.35).toFixed(2) + ")")
     g.fillStyle = mist
     g.fillRect(0, base - amp * 1.4, w, amp * 1.8)
-
     const body = g.createLinearGradient(0, base - amp, 0, h)
     body.addColorStop(0, mixRgb(P.far, P.near, Math.pow(k, 1.3)))
     body.addColorStop(1, mixRgb(P.far, P.near, Math.min(1, Math.pow(k, 1.3) + 0.18)))
@@ -180,7 +176,6 @@ function paintLandscape(seed: number, palette: LandPalette, w = 1600, h = 1000):
     g.lineTo(w, h)
     g.closePath()
     g.fill()
-
     if (L >= layers - 2) {
       g.fillStyle = mixRgb(P.far, P.near, Math.min(1, Math.pow(k, 1.3) + 0.08))
       for (let x = 0; x < w; x += 7 + r() * 9) {
@@ -203,7 +198,6 @@ function paintLandscape(seed: number, palette: LandPalette, w = 1600, h = 1000):
   vig.addColorStop(1, "rgba(0,0,0,.32)")
   g.fillStyle = vig
   g.fillRect(0, 0, w, h)
-
   const grain = g.getImageData(0, 0, w, h)
   const d = grain.data
   for (let i = 0; i < d.length; i += 4) {
@@ -213,7 +207,6 @@ function paintLandscape(seed: number, palette: LandPalette, w = 1600, h = 1000):
     d[i + 2] += v
   }
   g.putImageData(grain, 0, 0)
-
   return c.toDataURL("image/jpeg", 0.88)
 }
 
@@ -392,7 +385,6 @@ export default function CardDeckCarousel({
     if (isThrow(dx, d.vx, w)) throwTop(dx, dx, dy, dy)
     else setOver(null)
   }
-
   const onKey = (e: React.KeyboardEvent) => {
     lastTouch.current = performance.now()
     if (e.key === "ArrowRight") throwTop(1)
@@ -426,7 +418,6 @@ export default function CardDeckCarousel({
       onKeyDown={onKey}
     >
       <style>{CD_CSS}</style>
-
       <div ref={deckRef} className="cd-deck">
         {slides.map((sl, i) => {
           const depth = wrap(i - top, n)
@@ -495,7 +486,6 @@ export default function CardDeckCarousel({
           </svg>
         </button>
       </div>
-
       <div className="cd-sr" aria-live="polite">
         {"Card " + (top + 1) + " of " + n + (s.title ? ": " + s.title : "")}
       </div>
